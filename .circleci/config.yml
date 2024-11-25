@@ -20,10 +20,10 @@ jobs:
       - image: cimg/base:latest
     steps:
       - run:
-        name: Deploy to staging
-        command: |
-          echo "Deplying to staging env"
-          curl $RENDER_STAGING_DEPLOYHOOK
+          name: Deploy to staging
+          command: |
+            echo "Deplying to staging env"
+            curl $RENDER_STAGING_DEPLOYHOOK
 
 workflows:
   run-test-and-stage-workflow:
