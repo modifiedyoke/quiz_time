@@ -1,11 +1,40 @@
 version: 2.1
+
+orbs:
+  cypress: cypress.io/cypress@3.3.1
+
 jobs:
-  hello-world:
+  start-server:
+    docker:
+      - image: cypress/base:current
+    steps:
+      - checkout
+      - run: 
+          name: Install Deps
+          command: npm install
+      - run:
+         name: Build
+          command: npm run build
+  deploy-to-staging:
     docker:
       - image: cimg/base:current
     steps:
-      - run: echo "Hello, world!"
+      - run:
+        name: Deploy to staging
+        command: |
+          echo "Deplying to staging env"
+          curl $RENDER_STAGING_DEPLOYHOOK
+
 workflows:
-  hello-world-workflow:
+  run-test-and-stage-workflow:
     jobs:
-      - hello-world
+      - start-server
+      - cypress/run:
+          name: run-component-tests
+          command: npm cypress run --component
+      - deploy-to-staging:
+        requires:
+          - run-component-tests
+        filters:
+          branches:
+            only: main
