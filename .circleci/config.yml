@@ -6,35 +6,35 @@ orbs:
 jobs:
   start-server:
     docker:
-      - image: cypress/base:current
+      - image: cypress/base:latest
     steps:
       - checkout
       - run: 
-          name: Install Deps
-          command: npm install
+        name: Install Deps
+        command: npm install
       - run:
-          name: Build
-          command: npm run build
+        name: Build
+        command: npm run build
   deploy-to-staging:
     docker:
-      - image: cimg/base:current
+      - image: cimg/base:latest
     steps:
       - run:
-        name: Deploy to staging
-        command: |
-          echo "Deplying to staging env"
-          curl $RENDER_STAGING_DEPLOYHOOK
+      name: Deploy to staging
+      command: |
+        echo "Deplying to staging env"
+        curl $RENDER_STAGING_DEPLOYHOOK
 
 workflows:
   run-test-and-stage-workflow:
     jobs:
       - start-server
       - cypress/run:
-          name: run-component-tests
-          command: npm cypress run --component
+        name: run-component-tests
+        command: npm cypress run --component
       - deploy-to-staging:
         requires:
-          - run-component-tests
+        - run-component-tests
         filters:
           branches:
             only: main
