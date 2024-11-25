@@ -31,7 +31,7 @@ workflows:
       - start-server
       - cypress/run:
         name: run-component-tests
-        command: npm cypress run --component
+        command: npx cypress run --component
       - deploy-to-staging:
         requires:
         - run-component-tests
