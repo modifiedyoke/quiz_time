@@ -32,7 +32,7 @@ jobs:
           command: |
             echo "Deploying to Render production"
             curl $RENDER_PRODUCTION_DEPLOYHOOK
-            
+
 workflows:
   run-tests-and-stage-then-hold-for-prod:
     jobs:
@@ -48,7 +48,8 @@ workflows:
               only: main
       - hold:
           type: approval
-          requires: deploy-to-staging
+          requires:
+            - deploy-to-staging
       - deploy-to-production:
           requires:
             - hold
