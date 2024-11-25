@@ -13,7 +13,7 @@ jobs:
           name: Install Deps
           command: npm install
       - run:
-         name: Build
+          name: Build
           command: npm run build
   deploy-to-staging:
     docker:
