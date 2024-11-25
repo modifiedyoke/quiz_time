@@ -33,8 +33,8 @@ workflows:
           name: run-component-tests
           command: npx cypress run --component
       - deploy-to-staging:
-        requires:
-        - run-component-tests
-        filters:
-          branches:
-            only: main
+          requires:
+          - run-component-tests
+          filters:
+            branches:
+              only: main
