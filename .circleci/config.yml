@@ -46,13 +46,9 @@ workflows:
           filters:
             branches:
               only: main
-      - hold:
-          type: approval
-          requires:
-            - deploy-to-staging
       - deploy-to-production:
           requires:
-            - hold
+            - deploy-to-staging
           filters:
             branches:
               only: main
