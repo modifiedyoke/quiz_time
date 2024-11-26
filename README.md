@@ -13,6 +13,10 @@ This project is used to demonstrate web application integration with [CircleCI](
 - CircleCI intregration (see the .circleci folder)
 - Render deployment [here](https://quiz-time-ajk3.onrender.com/)
 
+### Screens
+CircleCI
+![circle](https://github.com/user-attachments/assets/b337494d-b5da-4d0f-b9c9-e1bfb3ef29c7)
+
 ### License
 
 This project is licensed under the [MIT License](LICENSE.md).
